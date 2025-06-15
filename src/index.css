@@ -1,0 +1,243 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@layer base {
+  :root {
+    --background: 248 250 252;
+    --foreground: 15 23 42;
+
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+
+    --primary: 59 130 246;
+    --primary-foreground: 248 250 252;
+
+    --secondary: 241 245 249;
+    --secondary-foreground: 51 65 85;
+
+    --muted: 226 232 240;
+    --muted-foreground: 71 85 105;
+
+    --accent: 241 245 249;
+    --accent-foreground: 51 65 85;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --border: 203 213 225;
+    --input: 203 213 225;
+    --ring: 59 130 246;
+
+    --radius: 0rem;
+
+    /* Professional light mode colors */
+    --pixel-green: 34 197 94;
+    --pixel-blue: 59 130 246;
+    --pixel-red: 239 68 68;
+    --pixel-purple: 147 51 234;
+    --pixel-orange: 249 115 22;
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+
+    --card: 30 41 59;
+    --card-foreground: 248 250 252;
+
+    --popover: 30 41 59;
+    --popover-foreground: 248 250 252;
+
+    --primary: 34 197 94;
+    --primary-foreground: 15 23 42;
+
+    --secondary: 51 65 85;
+    --secondary-foreground: 248 250 252;
+
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+
+    --accent: 51 65 85;
+    --accent-foreground: 248 250 252;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 34 197 94;
+
+    /* Dark mode colors */
+    --pixel-green: 34 197 94;
+    --pixel-blue: 59 130 246;
+    --pixel-red: 239 68 68;
+    --pixel-purple: 147 51 234;
+    --pixel-orange: 249 115 22;
+  }
+}
+
+@layer utilities {
+  .text-pixel-green { color: rgb(var(--pixel-green)); }
+  .text-pixel-blue { color: rgb(var(--pixel-blue)); }
+  .text-pixel-red { color: rgb(var(--pixel-red)); }
+  .text-pixel-purple { color: rgb(var(--pixel-purple)); }
+  .text-pixel-orange { color: rgb(var(--pixel-orange)); }
+  
+  .bg-pixel-green { background-color: rgb(var(--pixel-green)); }
+  .bg-pixel-blue { background-color: rgb(var(--pixel-blue)); }
+  .bg-pixel-red { background-color: rgb(var(--pixel-red)); }
+  .bg-pixel-purple { background-color: rgb(var(--pixel-purple)); }
+  .bg-pixel-orange { background-color: rgb(var(--pixel-orange)); }
+
+  .border-pixel-green { border-color: rgb(var(--pixel-green)); }
+  .border-pixel-blue { border-color: rgb(var(--pixel-blue)); }
+  .border-pixel-red { border-color: rgb(var(--pixel-red)); }
+  .border-pixel-purple { border-color: rgb(var(--pixel-purple)); }
+  .border-pixel-orange { border-color: rgb(var(--pixel-orange)); }
+
+  .border-pixel-green\/20 { border-color: rgb(var(--pixel-green) / 0.2); }
+  .border-pixel-green\/30 { border-color: rgb(var(--pixel-green) / 0.3); }
+  .border-pixel-green\/50 { border-color: rgb(var(--pixel-green) / 0.5); }
+
+  .bg-pixel-green\/10 { background-color: rgb(var(--pixel-green) / 0.1); }
+  .bg-pixel-green\/20 { background-color: rgb(var(--pixel-green) / 0.2); }
+  .bg-pixel-purple\/10 { background-color: rgb(var(--pixel-purple) / 0.1); }
+  .bg-pixel-orange\/10 { background-color: rgb(var(--pixel-orange) / 0.1); }
+
+  .ring-pixel-green\/20 { --tw-ring-color: rgb(var(--pixel-green) / 0.2); }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Light mode specific utilities */
+  .light\:text-pixel-blue {
+    color: rgb(var(--pixel-blue));
+  }
+  
+  :not(.dark) .light\:text-pixel-blue {
+    color: rgb(var(--pixel-blue));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-pixel;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  }
+
+  .pixel-border {
+    border: 2px solid currentColor;
+    border-image: url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m0 0h100v100h-100z' fill='none' stroke='%23000' stroke-width='2'/%3e%3c/svg%3e") 2;
+  }
+
+  .pixel-shadow {
+    box-shadow: 4px 4px 0px 0px currentColor;
+  }
+
+  .pixel-glow {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+
+  .gradient-card {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .dark .gradient-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(51, 65, 85, 0.3);
+  }
+}
+
+@layer components {
+  .pixel-button {
+    @apply font-pixel text-xs px-3 py-2 md:px-4 border-2 border-current bg-transparent 
+           hover:bg-current hover:text-background transition-all duration-200
+           active:translate-x-1 active:translate-y-1;
+  }
+
+  .pixel-card {
+    @apply border-2 border-current p-4 pixel-shadow gradient-card;
+  }
+
+  .professional-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .dark .professional-gradient {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  }
+
+  /* Enhanced mobile responsive improvements */
+  @media (max-width: 640px) {
+    .pixel-button {
+      @apply text-[10px] px-2 py-1.5;
+    }
+    
+    .font-pixel {
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+    
+    .mobile-compact {
+      @apply px-2 py-2;
+    }
+
+    /* Prevent text overflow on mobile */
+    .gradient-card {
+      @apply overflow-hidden;
+    }
+
+    /* Better mobile spacing */
+    .container {
+      @apply px-2;
+    }
+
+    /* Mobile-specific font sizes for crypto cards */
+    .crypto-card-mobile {
+      @apply text-[8px] leading-tight;
+    }
+
+    .crypto-card-mobile h3 {
+      @apply text-[9px] leading-none;
+    }
+
+    .crypto-card-mobile p {
+      @apply text-[7px] leading-none;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 768px) {
+    .font-pixel {
+      font-size: 0.875rem;
+      line-height: 1.25;
+    }
+  }
+}
