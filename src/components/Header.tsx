@@ -25,9 +25,16 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-0.5 text-muted-foreground text-[8px] md:text-xs font-pixel opacity-60">
-            <span className="whitespace-nowrap">Developed by @etherian3</span>
+            <span className="whitespace-nowrap">
+              <a
+                href="https://github.com/etherian3"
+                className="hover:text-pixel-green transition-colors"
+              >
+                Developed by @etherian3
+              </a>
+            </span>
             <a
-              href="https://github.com/etherian3"
+              href="https://github.com/etherian3/crypto-pixzl"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-pixel-green transition-colors flex-shrink-0"
